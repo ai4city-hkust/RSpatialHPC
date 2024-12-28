@@ -14,6 +14,9 @@ cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 
 ```
 sudo apt update
+```
+
+```
 sudo apt install r-base r-base-dev
 ```
 
