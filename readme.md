@@ -13,17 +13,17 @@ cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 ### install base R
 
 ```
-sudo apt update
+sudo apt-get update
 ```
 
 ```
-sudo apt install r-base r-base-dev
+sudo apt-get install r-base r-base-dev
 ```
 
 ### install Rstudio Server
 
 ```
-sudo apt install gdebi-core
+sudo apt-get install gdebi-core
 ```
 
 ```
