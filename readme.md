@@ -10,6 +10,8 @@ lsb_release -a
 cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 ```
 
+### set thr system dependencies
+
 ```
 # update indices
 sudo apt update -qq
