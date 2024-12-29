@@ -10,22 +10,20 @@ lsb_release -a
 cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 ```
 
+```
+# update indices
+sudo apt update -qq
+```
+
+```
+# install two helper packages we need
+sudo apt install --no-install-recommends software-properties-common dirmngr
+```
+
 ### install base R
 
 ```
-sudo apt update
-```
-
-```
-sudo apt upgrade
-```
-
-```
-sudo apt install software-properties-common
-```
-
-```
-sudo apt install r-base r-base-dev
+sudo apt install --no-install-recommends r-base r-base-dev
 ```
 
 ### install Rstudio Server
