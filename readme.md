@@ -43,7 +43,7 @@ wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.12.0-4
 sudo gdebi rstudio-server-2024.12.0-467-amd64.deb
 ```
 
-### install R packages
+### install R packages dependencies
 
 ```
 sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev
