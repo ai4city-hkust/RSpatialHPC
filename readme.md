@@ -22,6 +22,11 @@ sudo apt update -qq
 sudo apt install --no-install-recommends software-properties-common dirmngr
 ```
 
+```
+# setup the gcc compiler
+sudo apt install build-essential gfortran -y
+```
+
 ### install base R
 
 ```
