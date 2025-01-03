@@ -10,7 +10,7 @@ lsb_release -a
 cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 ```
 
-### set the system dependencies
+### setup the system dependencies
 
 ```
 # update indices
