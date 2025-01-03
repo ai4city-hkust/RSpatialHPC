@@ -69,4 +69,8 @@ sudo apt install libudunits2-dev
 sudo apt install libudunits2-dev libgdal-dev libproj-dev
 ```
 
+### install R packages
 
+```
+RScript -e 'install.packages("devtools")'
+```
