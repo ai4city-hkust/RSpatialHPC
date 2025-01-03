@@ -34,20 +34,13 @@ wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sud
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 ```
 
-# install R and its dependencies from the newly added repo
-
-```
-# setup the gcc compiler
-sudo apt install build-essential gfortran -y
-```
-
 ### install base R
 
 ```
 sudo apt install --no-install-recommends r-base r-base-dev
 ```
 
-### install Rstudio Server
+### install Rstudio Server (not necessary)
 
 ```
 sudo apt install gdebi-core
