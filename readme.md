@@ -55,6 +55,12 @@ wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.12.0-4
 sudo gdebi rstudio-server-2024.12.0-467-amd64.deb
 ```
 
+### setup R packages installation path
+
+```
+Rscript -e '.libPaths()'
+```
+
 ### install R packages dependencies
 
 ```
