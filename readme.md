@@ -58,6 +58,22 @@ sudo gdebi rstudio-server-2024.12.0-467-amd64.deb
 ### setup R packages installation path
 
 ```
+cd ~
+```
+
+```
+mkdir -p ~/pkgR
+```
+
+```
+Rscript -e '.libPaths()'
+```
+
+```
+Rscript -e '.libPaths(c("~/pkgR", .libPaths()))'
+```
+
+```
 Rscript -e '.libPaths()'
 ```
 
