@@ -106,5 +106,5 @@ Rscript -e 'install.packages(c("sf","terra"), dep = TRUE)'
 ```
 
 ```
-Rscript -e 'install.packages(c("sdsfun","gdverse","geocomplexity", "spEDM", "Itmsa"), dep = TRUE)'
+Rscript -e 'install.packages(c("sdsfun","gdverse","geocomplexity", "spEDM", "itmsa"), dep = TRUE)'
 ```
