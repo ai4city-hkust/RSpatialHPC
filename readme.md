@@ -43,11 +43,11 @@ sudo apt install --no-install-recommends r-base r-base-dev
 ### install R packages dependencies
 
 ```
-sudo apt install libfontconfig1-dev libcurl4-openssl-dev libssl-dev libxml2-dev
+sudo apt install libfontconfig1-dev libcurl4-openssl-dev libssl-dev libxml2-dev libharfbuzz-dev libfribidi-dev
 ```
 
 ```
-sudo apt install libharfbuzz-dev libfribidi-dev
+sudo apt install 
 ```
 
 ```
