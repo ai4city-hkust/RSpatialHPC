@@ -40,6 +40,16 @@ sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_
 sudo apt install --no-install-recommends r-base r-base-dev
 ```
 
+### install R packages dependencies
+
+```
+sudo apt install libfontconfig1-dev libcurl4-openssl-dev libssl-dev libxml2-dev
+```
+
+```
+sudo apt install libudunits2-dev libgdal-dev libproj-dev
+```
+
 ### install Rstudio Server (not necessary)
 
 ```
@@ -75,20 +85,6 @@ Rscript -e '.libPaths(c("~/pkgR", .libPaths()))'
 
 ```
 Rscript -e '.libPaths()'
-```
-
-### install R packages dependencies
-
-```
-sudo apt install libcurl4-openssl-dev libssl-dev libxml2-dev
-```
-
-```
-sudo apt install libudunits2-dev
-```
-
-```
-sudo apt install libudunits2-dev libgdal-dev libproj-dev
 ```
 
 ### install R packages
