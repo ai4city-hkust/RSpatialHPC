@@ -47,11 +47,9 @@ sudo apt install libfontconfig1-dev libcurl4-openssl-dev libssl-dev libxml2-dev 
 ```
 
 ```
-sudo apt install 
-```
-
-```
-sudo apt install libudunits2-dev libgdal-dev libproj-dev
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update
+sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libsqlite0-dev
 ```
 
 ### install Rstudio Server (not necessary)
