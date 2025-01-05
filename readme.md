@@ -96,3 +96,11 @@ Rscript -e '.libPaths()'
 ```
 Rscript -e 'install.packages("devtools")'
 ```
+
+```
+Rscript -e 'install.packages("tidyverse")'
+```
+
+```
+Rscript -e 'install.packages(c("sf","terra"))'
+```
