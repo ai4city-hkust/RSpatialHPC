@@ -102,5 +102,5 @@ Rscript -e 'install.packages("tidyverse")'
 ```
 
 ```
-Rscript -e 'install.packages(c("sf","terra"))'
+Rscript -e 'install.packages(c("sf","terra"), dep = TRUE)'
 ```
