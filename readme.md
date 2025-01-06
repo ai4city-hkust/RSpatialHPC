@@ -1,6 +1,6 @@
 # Setup R-GeoSpatial Environment for HPC
 
-This repository contains a Shell script (`setup.sh`) to set up an R environment with necessary dependencies and configurations for geocomputing on an Ubuntu system.
+This repository contains a Shell script (`setup.sh`) to set up an R environment with necessary dependencies and configurations for geocomputation on an Ubuntu system HPC.
 
 ## Prerequisites
 
