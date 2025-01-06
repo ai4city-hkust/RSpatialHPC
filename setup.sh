@@ -50,11 +50,16 @@ sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable -y
 echo "Installing additional R package dependencies..."
 sudo apt install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libsqlite0-dev -y
 
-# Install RStudio Server (optional)
-echo "Installing RStudio Server..."
-sudo apt install gdebi-core -y
-wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.12.0-467-amd64.deb
-sudo gdebi rstudio-server-2024.12.0-467-amd64.deb -n
+# Ask the user if they want to install RStudio Server
+read -p "Do you want to install RStudio Server? (y/n): " install_rstudio
+if [[ "$install_rstudio" =~ ^[Yy]$ ]]; then
+    echo "Installing RStudio Server..."
+    sudo apt install gdebi-core -y
+    wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2024.12.0-467-amd64.deb
+    sudo gdebi rstudio-server-2024.12.0-467-amd64.deb -n
+else
+    echo "Skipping RStudio Server installation."
+fi
 
 # Set up R package installation path
 echo "Setting up R package installation path..."
