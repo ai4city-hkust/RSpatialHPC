@@ -120,9 +120,33 @@ Rscript -e 'quit(save="no")'
 
 # Install R packages
 echo "Installing R packages..."
-Rscript -e 'install.packages("devtools")'
-Rscript -e 'install.packages("tidyverse")'
-Rscript -e 'install.packages(c("sf","terra"), dep = TRUE)'
+
+# Function to install an R package
+install_r_package() {
+    local package_name=$1  # Get the package name from the first argument
+
+    echo "Installing R package: $package_name..."
+    Rscript -e "install.packages('$package_name', dep = TRUE)"
+
+    # Check if the installation succeeded
+    if [ $? -ne 0 ]; then
+        echo "ERROR: Failed to install R package: $package_name."
+        read -p "Do you want to retry? (y/n): " retry
+        if [[ "$retry" =~ ^[Yy]$ ]]; then
+            install_r_package "$package_name"  # Retry installation
+        else
+            echo "Skipping installation of $package_name."
+        fi
+    else
+        echo "R package $package_name installed successfully."
+    fi
+}
+
+install_r_package "usethis"
+install_r_package "devtools"
+install_r_package "tidyverse"
+install_r_package "sf"
+install_r_package "terra"
 Rscript -e 'install.packages(c("sdsfun","gdverse","geocomplexity", "spEDM", "itmsa"), dep = TRUE)'
 
 echo "All tasks completed!"
