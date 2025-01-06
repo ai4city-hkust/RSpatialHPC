@@ -69,16 +69,24 @@ cd ~
 if [ -d "~/pkgR" ]; then
     echo "Directory ~/pkgR already exists. Using ~/pkgRUserLocal instead."
     mkdir -p ~/pkgRUserLocal
-    Rscript -e '.libPaths(c("~/pkgRUserLocal", .libPaths()))'
+    R_LIB_PATH="~/pkgRUserLocal"
 else
     echo "Directory ~/pkgR does not exist. Using ~/pkgR."
     mkdir -p ~/pkgR
-    Rscript -e '.libPaths(c("~/pkgR", .libPaths()))'
+    R_LIB_PATH="~/pkgR"
 fi
 
-# Verify the library paths
-echo "Current R library paths:"
-Rscript -e '.libPaths()'
+# Write the .libPaths() configuration to ~/.Rprofile
+echo "Configuring .libPaths() in ~/.Rprofile..."
+echo ".libPaths(c(\"$R_LIB_PATH\", .libPaths()))" >> ~/.Rprofile
+
+# Verify the .Rprofile configuration
+echo "Current ~/.Rprofile content:"
+cat ~/.Rprofile
+
+# Restart R to apply the new .libPaths() settings
+echo "Restarting R to apply the new library paths..."
+Rscript -e 'quit(save="no")'
 
 # Install R packages
 echo "Installing R packages..."
