@@ -64,8 +64,21 @@ fi
 # Set up R package installation path
 echo "Setting up R package installation path..."
 cd ~
-mkdir -p ~/pkgR
-Rscript -e '.libPaths(c("~/pkgR", .libPaths()))'
+
+# Check if ~/pkgR exists
+if [ -d "~/pkgR" ]; then
+    echo "Directory ~/pkgR already exists. Using ~/pkgRUserLocal instead."
+    mkdir -p ~/pkgRUserLocal
+    Rscript -e '.libPaths(c("~/pkgRUserLocal", .libPaths()))'
+else
+    echo "Directory ~/pkgR does not exist. Using ~/pkgR."
+    mkdir -p ~/pkgR
+    Rscript -e '.libPaths(c("~/pkgR", .libPaths()))'
+fi
+
+# Verify the library paths
+echo "Current R library paths:"
+Rscript -e '.libPaths()'
 
 # Install R packages
 echo "Installing R packages..."
