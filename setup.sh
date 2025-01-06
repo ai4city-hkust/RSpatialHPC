@@ -30,9 +30,29 @@ sudo apt install --no-install-recommends software-properties-common dirmngr -y
 echo "Adding R project signing key..."
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 
+# Check if the previous command succeeded
+if [ $? -ne 0 ]; then
+    echo "WARNING: Failed to add the R project signing key."
+    read -p "Do you want to continue? (y/n): " continue
+    if [[ ! "$continue" =~ ^[Yy]$ ]]; then
+        echo "Exiting script."
+        exit 1
+    fi
+fi
+
 # Add the R 4.0 repository
 echo "Adding R 4.0 repository..."
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
+# Check if the previous command succeeded
+if [ $? -ne 0 ]; then
+    echo "WARNING: Failed to add the R 4.0 repository."
+    read -p "Do you want to continue? (y/n): " continue
+    if [[ ! "$continue" =~ ^[Yy]$ ]]; then
+        echo "Exiting script."
+        exit 1
+    fi
+fi
 
 # Install base R
 echo "Installing base R..."
@@ -45,6 +65,16 @@ sudo apt install libfontconfig1-dev libcurl4-openssl-dev libssl-dev libxml2-dev 
 # Add ubuntugis unstable PPA
 echo "Adding ubuntugis unstable PPA..."
 sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable -y
+
+# Check if the previous command succeeded
+if [ $? -ne 0 ]; then
+    echo "WARNING: Failed to add ubuntugis unstable PPA."
+    read -p "Do you want to continue? (y/n): " continue
+    if [[ ! "$continue" =~ ^[Yy]$ ]]; then
+        echo "Exiting script."
+        exit 1
+    fi
+fi
 
 # Install additional R package dependencies
 echo "Installing additional R package dependencies..."
