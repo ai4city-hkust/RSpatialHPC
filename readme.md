@@ -1,6 +1,6 @@
 ### view the ubuntu system information
 
-```shell
+```
 lsb_release -a
 ```
 
