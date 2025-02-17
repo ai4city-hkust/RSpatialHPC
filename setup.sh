@@ -60,7 +60,7 @@ sudo apt install --no-install-recommends r-base r-base-dev -y
 
 # Install R package dependencies
 echo "Installing R package dependencies..."
-sudo apt install libfontconfig1-dev libcurl4-openssl-dev libssl-dev libxml2-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev -y
+sudo apt install libfontconfig1-dev libcurl4-openssl-dev libssl-dev libxml2-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libblas-dev liblapack-dev libarmadillo-dev -y
 
 # Add ubuntugis unstable PPA
 echo "Adding ubuntugis unstable PPA..."
@@ -126,7 +126,7 @@ install_r_package() {
     local package_name=$1  # Get the package name from the first argument
 
     echo "Installing R package: $package_name..."
-    Rscript -e "install.packages('$package_name', dep = TRUE)"
+    Rscript -e "install.packages('$package_name', repos = 'https://mirrors.bfsu.edu.cn/CRAN/', dep = TRUE)"
 
     # Check if the installation succeeded
     if [ $? -ne 0 ]; then
