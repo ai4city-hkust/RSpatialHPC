@@ -60,7 +60,7 @@ sudo apt install --no-install-recommends r-base r-base-dev -y
 
 # Install R package dependencies
 echo "Installing R package dependencies..."
-sudo apt install libfontconfig1-dev libcurl4-openssl-dev libssl-dev libxml2-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libblas-dev liblapack-dev libarmadillo-dev -y
+sudo apt install libfontconfig1-dev libfreetype6-dev libcurl4-openssl-dev libssl-dev libxml2-dev libharfbuzz-dev libfribidi-dev libicu-dev libpng-dev libtiff5-dev libjpeg-dev libmagick++-dev libblas-dev liblapack-dev libarmadillo-dev -y
 
 # Add ubuntugis unstable PPA
 echo "Adding ubuntugis unstable PPA..."
@@ -78,7 +78,7 @@ fi
 
 # Install additional R package dependencies
 echo "Installing additional R package dependencies..."
-sudo apt install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libsqlite0-dev -y
+sudo apt install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libsqlite3-dev -y
 
 # Ask the user if they want to install RStudio Server
 read -p "Do you want to install RStudio Server? (y/n): " install_rstudio
