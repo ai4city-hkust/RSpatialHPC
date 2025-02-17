@@ -196,8 +196,7 @@ install_r_package() {
             fi
         fi
     done
-
-
+}
 
 install_r_package "usethis"
 install_r_package "devtools"
