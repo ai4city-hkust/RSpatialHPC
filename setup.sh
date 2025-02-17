@@ -147,6 +147,8 @@ install_r_package "devtools"
 install_r_package "tidyverse"
 install_r_package "sf"
 install_r_package "terra"
-Rscript -e 'install.packages(c("sdsfun","gdverse","geocomplexity", "spEDM", "itmsa"), dep = TRUE)'
+install_r_package "sdsfun"
+install_r_package "spEDM"
+# Rscript -e 'install.packages(c("sdsfun","gdverse","geocomplexity", "spEDM", "itmsa"), dep = TRUE)'
 
 echo "All tasks completed!"
