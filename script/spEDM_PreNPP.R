@@ -9,8 +9,9 @@ npp_res = gccm(data = npp,
                cause = "pre",
                effect = "npp",
                libsizes = seq(20,300,20),
-               E = 2,
+               E = 3,
                k = 5,
+               tau = 0,
                pred = pred,
                progressbar = TRUE)
 endTime = Sys.time()
