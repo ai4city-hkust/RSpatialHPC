@@ -121,26 +121,83 @@ Rscript -e 'quit(save="no")'
 # Install R packages
 echo "Installing R packages..."
 
-# Function to install an R package
+# # Function to install an R package
+# install_r_package() {
+#     local package_name=$1  # Get the package name from the first argument
+
+#     echo "Installing R package: $package_name..."
+#     Rscript -e "install.packages('$package_name', repos = 'https://mirrors.bfsu.edu.cn/CRAN/', dep = TRUE)"
+
+#     # Check if the installation succeeded
+#     if [ $? -ne 0 ]; then
+#         echo "ERROR: Failed to install R package: $package_name."
+#         read -p "Do you want to retry? (y/n): " retry
+#         if [[ "$retry" =~ ^[Yy]$ ]]; then
+#             install_r_package "$package_name"  # Retry installation
+#         else
+#             echo "Skipping installation of $package_name."
+#         fi
+#     else
+#         echo "R package $package_name installed successfully."
+#     fi
+# }
+
+# Function to install an R package with retry logic
 install_r_package() {
     local package_name=$1  # Get the package name from the first argument
+    local max_retries=5     # Maximum number of retries
+    local attempt=1         # Current attempt
 
     echo "Installing R package: $package_name..."
-    Rscript -e "install.packages('$package_name', repos = 'https://mirrors.bfsu.edu.cn/CRAN/', dep = TRUE)"
 
-    # Check if the installation succeeded
-    if [ $? -ne 0 ]; then
-        echo "ERROR: Failed to install R package: $package_name."
-        read -p "Do you want to retry? (y/n): " retry
-        if [[ "$retry" =~ ^[Yy]$ ]]; then
-            install_r_package "$package_name"  # Retry installation
-        else
-            echo "Skipping installation of $package_name."
+    while [ $attempt -le $max_retries ]; do
+        # Try to install the package
+        Rscript -e "install.packages('$package_name', repos = 'https://mirrors.bfsu.edu.cn/CRAN/', dep = TRUE)"
+
+        # Check if the installation succeeded
+        if [ $? -eq 0 ]; then
+            echo "R package $package_name installed successfully."
+            return 0  # Exit function after successful installation
         fi
-    else
-        echo "R package $package_name installed successfully."
-    fi
-}
+
+        # If installation failed
+        echo "ERROR: Failed to install R package: $package_name (Attempt $attempt of $max_retries)."
+        
+        # If 5 attempts failed, prompt for continuation
+        if [ $attempt -eq 5 ]; then
+            read -p "5 attempts failed. Do you want to continue? (y/n): " continue
+            if [[ "$continue" =~ ^[Yy]$ ]]; then
+                echo "Continuing with the next package..."
+                return 1  # Exit and continue with the next package
+            else
+                echo "Skipping installation of $package_name."
+                return 1  # Exit the function and skip the current package
+            fi
+        fi
+
+        # Prompt to retry after each failure
+        if [[ "$attempt" -lt 3 ]]; then
+            read -p "Do you want to retry? (y/n): " retry
+            if [[ "$retry" =~ ^[Yy]$ ]]; then
+                ((attempt++))  # Increment the attempt counter
+                continue  # Retry the installation
+            else
+                echo "Skipping installation of $package_name."
+                return 1  # Exit the function and skip the current package
+            fi
+        elif [[ "$attempt" -ge 3 && "$attempt" -lt 5 ]]; then
+            read -p "3 attempts failed. Do you want to continue with the next package? (y/n): " continue
+            if [[ "$continue" =~ ^[Yy]$ ]]; then
+                echo "Continuing with the next package..."
+                return 1  # Exit and continue with the next package
+            else
+                echo "Skipping installation of $package_name."
+                return 1  # Exit the function and skip the current package
+            fi
+        fi
+    done
+
+
 
 install_r_package "usethis"
 install_r_package "devtools"
